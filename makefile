@@ -33,7 +33,6 @@ init-tools: clean
 init-lexer: init-tools
 	@echo "Initializing lexer project..."
 	@mkdir -p src/lexer
-	@mkdir -p src/compiler
 	@java -cp $(COMPILE_DIR) tools.CompilerTools src/tools/definition/grammar.txt --summary --lexer
 
 tools:
