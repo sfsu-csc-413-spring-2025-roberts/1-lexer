@@ -23,7 +23,7 @@ clean:
 init-tools: clean
 	@echo "Ensuring project structure..."
 	@mkdir -p $(SRC_DIR)
-	@mkdir -p tests
+	@mkdir -p tests/helpers
 	@echo "Replacing existing tools implementation..."
 	@rm -rf src/tools
 	@cp -r ../0-tools/src/tools src/tools

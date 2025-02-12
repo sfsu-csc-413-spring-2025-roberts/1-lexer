@@ -1,2 +1,4 @@
 out/
 *.class
+src/lexer/daos/SymbolTable.java
+src/lexer/daos/TokenKind.java
