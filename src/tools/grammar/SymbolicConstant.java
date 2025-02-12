@@ -2,7 +2,7 @@ package tools.grammar;
 
 public class SymbolicConstant {
     public enum Type {
-        OPERATOR, SEPARATOR, KEYWORD, LITERAL
+        OPERATOR, SEPARATOR, KEYWORD, LITERAL, IDENTIFIER
     }
 
     private String lexeme;

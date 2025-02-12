@@ -20,6 +20,9 @@ public class SummaryWriter extends GrammarWriter {
         outputLexemes("Keywords", grammar.getKeywords(), 7);
         outputLexemes("Operators", grammar.getOperators(), 2);
         outputLexemes("Separators", grammar.getSeparators(), 2);
+        outputLexemes("IDentifiers", grammar.getIdentifiers(), 4);
+        outputLexemes("Literals", grammar.getLiterals(), 6);
+        outputLexemes("AST Nodes", grammar.getAstNodes(), 10);
 
         System.out.println();
     }

@@ -62,20 +62,28 @@ public class Grammar {
     }
 
     public List<String> getKeywords() {
-        return this.symbolicConstants.entrySet().stream()
-                .filter(entry -> entry.getValue().getType().equals(SymbolicConstant.Type.KEYWORD))
-                .map(entry -> entry.getValue().getLexeme()).sorted().toList();
+        return this.filterSymbolicConstants(SymbolicConstant.Type.KEYWORD);
     }
 
     public List<String> getOperators() {
-        return this.symbolicConstants.entrySet().stream()
-                .filter(entry -> entry.getValue().getType().equals(SymbolicConstant.Type.OPERATOR))
-                .map(entry -> entry.getValue().getLexeme()).sorted().toList();
+        return this.filterSymbolicConstants(SymbolicConstant.Type.OPERATOR);
     }
 
     public List<String> getSeparators() {
+        return this.filterSymbolicConstants(SymbolicConstant.Type.SEPARATOR);
+    }
+
+    public List<String> getLiterals() {
+        return this.filterSymbolicConstants(SymbolicConstant.Type.LITERAL);
+    }
+
+    public List<String> getIdentifiers() {
+        return this.filterSymbolicConstants(SymbolicConstant.Type.IDENTIFIER);
+    }
+
+    private List<String> filterSymbolicConstants(SymbolicConstant.Type type) {
         return this.symbolicConstants.entrySet().stream()
-                .filter(entry -> entry.getValue().getType().equals(SymbolicConstant.Type.SEPARATOR))
+                .filter(entry -> entry.getValue().getType().equals(type))
                 .map(entry -> entry.getValue().getLexeme()).sorted().toList();
     }
 
@@ -119,7 +127,7 @@ public class Grammar {
         // This is for literal values of the type
         String literalLexeme = String.format("<%s>", lexeme);
         this.addSymbolicConstant(literalLexeme, new SymbolicConstant(
-                lexeme, SymbolicConstant.Type.LITERAL, String.format("%sLit", capitalizedType)));
+                literalLexeme, SymbolicConstant.Type.LITERAL, String.format("%sLit", capitalizedType)));
 
         // Types have nodes used in declarations and to represent literals
         this.nodes.put(String.format("%s_TYPE", lexeme.toUpperCase()), new NonTerminal(String.format("%s_TYPE",
@@ -137,6 +145,14 @@ public class Grammar {
         }
 
         this.productions.get(productionNonTerminal).add(production);
+
+        // This is a little hacky, but its a special case that is hard to detect
+        // from the grammar and I didn't want to add yet another flag to the grammar
+        // file
+        if (productionNonTerminal.equals("IDENTIFIER")) {
+            this.addSymbolicConstant("<id>",
+                    new SymbolicConstant("<id>", SymbolicConstant.Type.IDENTIFIER, "Identifier"));
+        }
 
         // Now process the production into terminals and non terminals
         List<String> productionParts = Arrays.asList(production.split("\\s+")).stream().map(item -> item.trim())

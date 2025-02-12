@@ -4,6 +4,7 @@
 }  RightBrace
 (  LeftParen
 )  RightParen
+// Comment
 
 # OPERATOR_NAMES
 +  Plus
@@ -27,7 +28,7 @@ TYPE            # This will end up being a special type tree defined by the actu
 
 # ASTS_WITH_SYMBOLS
 # Finally, some ASTs need to hang on to their lexeme for use in a later stage of compilation
-# Literals require a symbol as well, but this can be inferred from the grammar
+# Literals require a symbol as well, but this can be inferred from the grammar when reading
 REL_OP          # We will need the specific relational operator that was used
 ADD_OP          # We will need the specific addition operator that was used
 MULT_OP         # We will need the specific multiplication operator that was used
