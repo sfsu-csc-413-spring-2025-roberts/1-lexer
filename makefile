@@ -37,4 +37,11 @@ init-lexer: init-tools
 
 tools:
 	@echo "Compiling tools..."
+	@javac -d $(COMPILE_DIR) -cp $(SRC_DIR):. src/tools/CompilerTools.java
 	@java -cp $(COMPILE_DIR):. tools.CompilerTools src/tools/definition/grammar.txt --summary --lexer
+
+lexer: clean tools
+	@echo "Compiling lexer..."
+	@javac -d $(COMPILE_DIR) -cp $(SRC_DIR):. src/lexer/Lexer.java
+	@echo "Running lexer with from.x"
+	@java -cp $(COMPILE_DIR):. lexer.Lexer sample-code/from.x

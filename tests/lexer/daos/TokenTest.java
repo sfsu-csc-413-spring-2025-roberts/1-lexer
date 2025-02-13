@@ -10,6 +10,35 @@ import lexer.daos.TokenKind;
 
 public class TokenTest {
     @Test
+    public void testColumnlessConstructor() {
+        String testLexeme = "test";
+        Symbol symbol = new Symbol(TokenKind.Divide, testLexeme);
+
+        Token token = new Token(symbol);
+
+        assertEquals(testLexeme, token.getLexeme());
+        assertEquals(TokenKind.Divide, token.getTokenKind());
+        assertEquals(-1, token.getStartColumn());
+        assertEquals(-1, token.getEndColumn());
+    }
+
+    @Test
+    public void testConstructorWithColumns() {
+        String testLexeme = "test";
+        Symbol symbol = new Symbol(TokenKind.Divide, testLexeme);
+
+        int startColumn = 1;
+        int endColumn = 2;
+
+        Token token = new Token(symbol, startColumn, endColumn);
+
+        assertEquals(testLexeme, token.getLexeme());
+        assertEquals(TokenKind.Divide, token.getTokenKind());
+        assertEquals(startColumn, token.getStartColumn());
+        assertEquals(endColumn, token.getEndColumn());
+    }
+
+    @Test
     public void testGetLexeme() {
         String testLexeme = "test";
         Symbol symbol = new Symbol(TokenKind.Divide, testLexeme);

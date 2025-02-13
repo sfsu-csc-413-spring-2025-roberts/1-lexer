@@ -133,7 +133,10 @@ public class Lexer implements ILexer {
             throw new LexicalException("Unrecognized symbol: " + lexeme);
         }
 
-        return this.createToken(symbol, this.start, this.end - 1);
+        // Handle the case where the single character operator is at the end of the file
+        int modifier = this.current == '\0' ? 0 : 1;
+
+        return this.createToken(symbol, this.start, this.end - modifier);
     }
 
     private void ignoreComment() throws LexicalException {
@@ -156,6 +159,7 @@ public class Lexer implements ILexer {
                 System.out.println(token);
             }
 
+            System.out.println();
             System.out.println(lexer);
         } catch (Exception e) {
             e.printStackTrace();

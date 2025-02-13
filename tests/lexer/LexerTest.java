@@ -95,7 +95,7 @@ public class LexerTest {
             assertEquals(expectedStart, token.getStartColumn());
             assertEquals(expectedEnd, token.getEndColumn());
         } catch (LexicalException e) {
-            fail("Expected keyword token, but got LexicalException: " + e.getMessage());
+            fail("Expected token, but got LexicalException: " + e.getMessage());
         }
     }
 
