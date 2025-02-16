@@ -1,6 +1,8 @@
 # Assignment 1 - Lexer - CSC 413 Spring 2025
 
-Name: PUT YOUR FULL NAME HERE
+Name: Allan Taylor Aparicio
+
+// Video stoped: 18:41
 
 ## Notes
 
