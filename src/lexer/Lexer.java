@@ -1,6 +1,7 @@
 package lexer;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import lexer.daos.Symbol;
 import lexer.daos.SymbolTable;
@@ -151,8 +152,16 @@ public class Lexer implements ILexer {
     }
 
     public static void main(String[] args) {
+        if (args.length == 0) {
+
+            System.out.println("Usage: java lexer.Lexer <filename>");
+            return;
+
+        }
+
         try {
-            Lexer lexer = new Lexer(Path.of("sample-code", "simple.x"));
+            Path filePath = Paths.get(args[0]);
+            Lexer lexer = new Lexer(filePath);
             Token token;
 
             while ((token = lexer.nextToken()).getTokenKind() != TokenKind.EOF) {
