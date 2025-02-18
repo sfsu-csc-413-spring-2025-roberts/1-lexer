@@ -1,6 +1,6 @@
 # Assignment 1 - Lexer - CSC 413 Spring 2025
 
-Name: Allan Taylor Aparicio
+Name: ALLAN TAYLOR APARICIO
 
 // Video stoped: 18:41
 
